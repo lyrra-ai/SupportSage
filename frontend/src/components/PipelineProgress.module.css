@@ -1,0 +1,87 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  max-width: 360px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-dim);
+  transition: color 0.2s ease;
+}
+
+.step[data-state="done"] {
+  color: var(--text-muted);
+}
+
+.step[data-state="active"] {
+  color: var(--text);
+}
+
+.dot {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  display: grid;
+  place-items: center;
+}
+
+.dotIdle {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--border);
+}
+
+.dotDone {
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+}
+
+.spinner {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.shimmerText {
+  background: linear-gradient(
+    90deg,
+    var(--text-dim) 0%,
+    var(--text) 50%,
+    var(--text-dim) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 1.4s linear infinite;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}

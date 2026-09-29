@@ -1,9 +1,10 @@
 # SupportSage
 # SupportSage — Enterprise AI Customer Support Agent
 
-> **Live Demo (Railway, fast):** https://supportsage-production.up.railway.app/docs  
-> **Live Demo (Render, free-forever):** https://supportsage-b1iv.onrender.com/docs  
-> **Stack:** FastAPI · Groq (OpenAI GPT-OSS) · Pinecone · LangSmith · Docker · Render · Railway
+> **Chat UI:** https://supportsage-xi.vercel.app  
+> **API Docs (Railway, fast):** https://supportsage-production.up.railway.app/docs  
+> **API Docs (Render, free-forever):** https://supportsage-b1iv.onrender.com/docs  
+> **Stack:** FastAPI · Groq (OpenAI GPT-OSS) · Pinecone · LangSmith · Docker · Render · Railway · Next.js · Vercel
 
 ---
 
@@ -161,14 +162,16 @@ PYTHONPATH=. uvicorn main:app --reload --port 8000
 
 | Layer | Technology | Why |
 |---|---|---|
-| LLM Inference | Groq (Llama 3.1 8B / 3.3 70B) | 500 tok/s, free tier, provider-agnostic |
+| LLM Inference | Groq (openai/gpt-oss-20b / openai/gpt-oss-120b) | Fast inference, free tier, provider-agnostic |
 | Vector DB | Pinecone | Managed, stateless container architecture |
 | Embeddings | sentence-transformers/all-MiniLM-L6-v2 | Local, zero API cost, 384-dim |
 | Keyword Search | rank-bm25 | Exact match for IDs and product codes |
 | API Framework | FastAPI | Async, auto-docs, Pydantic validation |
 | Observability | LangSmith | Traces, costs, latency per request |
-| Containerization | Docker | Reproducible builds, Render deployment |
-| Hosting | Render | Free tier, Docker-native, auto-deploy on push |
+| Containerization | Docker | Reproducible builds, CPU-only torch wheel |
+| Backend Hosting | Render (free) + Railway (fast) | Two live deployments — free-forever vs. low-latency |
+| Frontend | Next.js + `@aicss/react` components | Chat UI visualizing guardrails, routing, retrieval, sources |
+| Frontend Hosting | Vercel | Free, zero-config Next.js deploys |
 
 ---
 
