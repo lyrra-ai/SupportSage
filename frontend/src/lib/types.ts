@@ -23,4 +23,13 @@ export interface ChatMessage {
   latencyMs?: number;
   pending?: boolean;
   error?: string;
+  /** In-memory only: animate the reveal for answers that just arrived. */
+  fresh?: boolean;
+}
+
+export interface Conversation {
+  id: string;
+  title: string;
+  createdAt: number;
+  messages: ChatMessage[];
 }

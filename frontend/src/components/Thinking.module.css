@@ -1,0 +1,165 @@
+/* Adapted from @aicss/react ThinkingReasoning (MIT), re-tokened to the app theme. */
+.tr {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+  animation: tr-block-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes tr-block-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.header {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  min-height: 22px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: default;
+}
+
+.header.clickable {
+  cursor: pointer;
+}
+
+/* Tint the AICSS orb with the app accent and seat its pill on our surface. */
+.orb {
+  display: inline-flex;
+  --orb-fg: var(--accent);
+  --orb-pill-bg: var(--surface);
+  --orb-label: var(--text-dim);
+  animation: tr-block-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.label {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: -0.005em;
+}
+
+.verb {
+  color: var(--text-dim);
+}
+
+.chevron {
+  color: var(--text-muted);
+  transform: rotate(180deg);
+  transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.header[aria-expanded="true"] .chevron {
+  transform: rotate(0deg);
+}
+
+.header.clickable:hover .chevron,
+.header.clickable:hover .verb {
+  color: var(--text);
+}
+
+.collapsible {
+  display: grid;
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transition: grid-template-rows 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 220ms ease;
+}
+
+.collapsible.collapsed {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.stream {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 8px 0 2px 2px;
+  padding-left: 14px;
+  border-left: 1px solid var(--border);
+}
+
+.sentence {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--text-muted);
+  letter-spacing: -0.005em;
+  animation: tr-sentence-in 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.sentence[data-done="true"] {
+  color: var(--text-dim);
+}
+
+@keyframes tr-sentence-in {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: none; }
+}
+
+.mark {
+  flex: none;
+  margin-top: 3px;
+  color: var(--accent);
+}
+
+.dot {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  display: grid;
+  place-items: center;
+}
+
+.dot::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--accent);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% { opacity: 0.3; transform: scale(0.8); }
+}
+
+.shimmer {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(
+    90deg,
+    var(--text-muted) 0%, var(--text-muted) 30%,
+    var(--text) 45%, var(--text) 55%,
+    var(--text-muted) 70%, var(--text-muted) 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: tr-shine 2.25s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+}
+
+@keyframes tr-shine {
+  0%, 18% { background-position: 100% 0; }
+  82%, 100% { background-position: 0% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tr, .sentence, .dot::before, .shimmer { animation: none; }
+  .shimmer { color: var(--text-dim); -webkit-text-fill-color: currentColor; }
+}
