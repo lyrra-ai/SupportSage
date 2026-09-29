@@ -15,8 +15,8 @@ class Settings(BaseSettings):
     EMBEDDING_DIM: int = 384
 
     # Models
-    PRIMARY_MODEL: str = "llama-3.1-8b-instant"
-    FALLBACK_MODEL: str = "llama-3.3-70b-versatile"
+    PRIMARY_MODEL: str = "openai/gpt-oss-20b"
+    FALLBACK_MODEL: str = "openai/gpt-oss-120b"
 
     # RAG
     TOP_K_RETRIEVAL: int = 10

@@ -7,7 +7,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --upgrade pip && \
-    pip install fastapi uvicorn langchain langchain-community langchain-groq \
+    pip install --index-url https://download.pytorch.org/whl/cpu torch && \
+    pip install fastapi uvicorn langchain-groq \
     pinecone sentence-transformers rank-bm25 \
     python-dotenv pydantic pydantic-settings \
     langsmith
